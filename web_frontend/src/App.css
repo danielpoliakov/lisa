@@ -1,0 +1,400 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600");
+@import url("https://fonts.googleapis.com/css?family=Lato:900");
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+b {
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+}
+
+h4 {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+code {
+  font-family: "Source Code Pro", monospace;
+  font-weight: 400;
+}
+
+.logo {
+  width: 65%;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Common */
+
+.hidden {
+  display: none;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+#sider {
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  z-index: 10;
+  background: #202030;
+}
+
+.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub {
+  background: #202030;
+}
+
+#logo {
+  color: white;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.header {
+  background: #fff;
+  padding: 0;
+  position: fixed;
+  display: block;
+  width: 100%;
+  z-index: 5;
+  left: 0;
+  line-height: 80px;
+  height: 80px;
+  top: 0;
+}
+
+.header-headline {
+  padding-left: 205px;
+  padding-left: calc(190px + 5%);
+  font-size: 30px;
+}
+
+.page-content {
+  background-color: #fff;
+  padding-top: 64px;
+  overflow: initial;
+  min-height: 100vh;
+}
+
+.footer {
+  text-align: center;
+  font-size: 95%;
+  color: #999;
+  display: none;
+}
+
+/* Tables */
+.definition-row {
+  width: 100%;
+  margin: 0;
+}
+
+.definition-key {
+  display: inline-block;
+  min-width: 150px;
+}
+
+.key,
+.value {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.section-headline,
+.report-section-headline {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+/* Dashboard */
+
+.inner-page-content {
+  padding: 20px 5% 30px 5%;
+  margin-top: 1vh;
+}
+
+/* Result Page */
+
+.report-missing {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 200px;
+  padding-left: 200px;
+}
+
+.report-missing p {
+  margin-top: 18px;
+  color: #5d5d81;
+}
+
+.tabs-report .ant-tabs-bar {
+  border: 0;
+}
+
+.tabs-report .ant-tabs-nav-scroll {
+  position: fixed;
+  width: calc(100% - 190px);
+  left: 190px;
+  top: 70px;
+  background: #fff;
+  z-index: 5;
+  padding-left: 5%;
+}
+
+.tabs-report .ant-tabs-nav .ant-tabs-tab {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.inner-pane {
+  padding: 50px 5% 30px 5%;
+  margin-top: 1vh;
+}
+
+.inner-content {
+  padding: 30px 30px 30px 30px;
+}
+
+.ant-empty-normal {
+  margin: 0;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  padding: 5px 0;
+}
+
+.ant-table-thead > tr > th {
+  background: none;
+  color: #000;
+}
+
+.ant-list-item {
+  padding: 5px 0;
+}
+
+.ant-table,
+.ant-list {
+  margin-bottom: 30px;
+}
+
+.ant-table-placeholder {
+  border-bottom: 0;
+}
+
+.ant-empty-normal .ant-empty-image {
+  height: 20px;
+}
+
+.ant-empty {
+  font-size: 12px;
+  margin-bottom: -10px;
+}
+
+.ant-pagination {
+  margin: 30px 0px 40px 0 !important;
+  text-align: center !important;
+  float: none !important;
+}
+
+.table-no-pagination {
+  margin-bottom: 20px;
+}
+
+.code-data {
+  display: block;
+  white-space: pre-wrap;
+}
+
+/* Overview */
+
+.downloads-section {
+  margin-top: 5px;
+  margin-bottom: 50px;
+}
+
+.downloads-section button {
+  margin-right: 10px;
+}
+
+/* Networking */
+
+.row-detail {
+  padding-left: 10px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+.row-detail p {
+  margin-bottom: 4px;
+}
+
+.row-detail .key {
+  font-weight: 600;
+  float: left;
+  width: 130px;
+}
+
+.endpoint-flag {
+  margin-left: -95px;
+}
+
+.endpoint-blacklisted {
+  padding-left: 19px;
+  font-size: 18px;
+}
+
+table .anticon {
+  vertical-align: text-bottom;
+  color: #cf1322;
+}
+
+/* Dynamic */
+
+.process-tree {
+  margin-bottom: 30px;
+}
+
+/* Upload Page */
+
+.upload-file-input {
+  display: block;
+  width: 400px;
+}
+
+.upload-label-text {
+  padding-top: 4px;
+}
+
+.upload-file-name {
+  margin-left: 20px;
+  font-weight: 400;
+}
+
+.upload-form-label {
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.upload-form-input {
+  margin-bottom: 20px;
+}
+
+.upload-form .ant-radio-button-wrapper {
+  padding: 0 81px;
+}
+
+.upload-submit {
+  display: block;
+  width: 400px;
+  margin-top: 45px;
+}
+
+.upload-alerts {
+  margin-top: 45px;
+  width: 400px;
+}
+
+.upload-form-exectime-input {
+  width: 400px;
+}
+
+/* API docs */
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header,
+.ant-collapse
+  > .ant-collapse-item.ant-collapse-no-arrow
+  > .ant-collapse-header {
+  padding-left: 0;
+}
+
+.api-tag {
+  display: inline-block;
+  width: 55px;
+  text-align: center;
+  padding: 3px 0px;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.api-tag-post {
+  background: #5d5d81;
+  color: #fff;
+}
+
+.api-tag-get {
+  background: #d4cbe5;
+  color: #555;
+}
+
+.ant-collapse .ant-collapse-item .ant-collapse-header .anticon {
+  left: initial;
+  right: 16px;
+}
+
+.api-short-desc {
+  margin: 0;
+  padding-left: 70px;
+  color: #555;
+}
+
+.api-docs-inner {
+  padding-left: 54px;
+}
+
+.api-docs-inner ul {
+  padding-left: 11px;
+  list-style: none;
+}
+
+.api-param {
+  font-weight: 600;
+  display: inline-block;
+  width: 80px;
+}
+
+.api-code-block {
+  display: block;
+  white-space: pre-wrap;
+  padding-left: 10px;
+}
+
+.ant-collapse-no-arrow .ant-collapse-content {
+  display: none;
+}
+
+.ant-collapse-no-arrow .ant-collapse-header {
+  cursor: default !important;
+}

@@ -1,0 +1,82 @@
+version: "3"
+
+services:
+  api:
+    image: lisa-api
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    volumes:
+      - "./data/storage:/home/lisa/data/storage"
+    depends_on:
+      - rabbitmq
+      - worker
+    networks:
+      lisanet:
+        ipv4_address: 172.42.0.10
+    restart: on-failure
+
+  worker:
+    image: lisa-worker
+    build:
+      context: .
+      dockerfile: ./docker/worker/Dockerfile
+    volumes:
+      - "./data/storage:/home/lisa/data/storage"
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    sysctls:
+      - "net.ipv4.ping_group_range=0 2000000"
+      - "net.ipv6.conf.all.disable_ipv6=0"
+    cap_add:
+      - NET_ADMIN
+    networks:
+      lisanet:
+    restart: on-failure
+
+  nginx:
+    image: lisa-nginx
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+      args:
+        webhost: localhost:4242
+    ports:
+      - 4242:80
+    depends_on:
+      - api
+    networks:
+      lisanet:
+        ipv4_address: 172.42.0.12
+
+  rabbitmq:
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=lisa
+      - RABBITMQ_DEFAULT_PASS=lisa
+    ports:
+      - 5672:5672
+    networks:
+      lisanet:
+        ipv4_address: 172.42.0.13
+
+  mariadb:
+    image: mariadb:latest
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=lisa
+      - MYSQL_PASSWORD=lisa
+      - MYSQL_DATABASE=lisadb
+    volumes:
+      - "./data/db:/var/lib/mysql"
+    networks:
+      lisanet:
+        ipv4_address: 172.42.0.14
+    restart: always
+
+networks:
+  lisanet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.42.0.0/24

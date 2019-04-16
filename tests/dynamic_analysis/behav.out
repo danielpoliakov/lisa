@@ -1,0 +1,319 @@
+LISA
+PROCESS
+109:105
+SYSCALL
+analyzed_bin
+execve
+109
+
+0
+SYSCALL
+analyzed_bin
+brk
+109
+0x0
+4464640
+SYSCALL
+analyzed_bin
+access
+109
+"/etc/ld.so.preload", R_OK
+-2 (ENOENT)
+OPENFILE
+"/etc/ld.so.cache"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+-2 (ENOENT)
+OPENFILE
+"/lib/tls/i686/sse2/libc.so.6"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/lib/tls/i686/sse2/libc.so.6", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+109
+"/lib/tls/i686/sse2", 0xffffffffbf863cf0
+-2 (ENOENT)
+OPENFILE
+"/lib/tls/i686/libc.so.6"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/lib/tls/i686/libc.so.6", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+109
+"/lib/tls/i686", 0xffffffffbf863cf0
+-2 (ENOENT)
+OPENFILE
+"/lib/tls/sse2/libc.so.6"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/lib/tls/sse2/libc.so.6", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+109
+"/lib/tls/sse2", 0xffffffffbf863cf0
+-2 (ENOENT)
+OPENFILE
+"/lib/tls/libc.so.6"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/lib/tls/libc.so.6", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+109
+"/lib/tls", 0xffffffffbf863cf0
+-2 (ENOENT)
+OPENFILE
+"/lib/i686/sse2/libc.so.6"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/lib/i686/sse2/libc.so.6", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+109
+"/lib/i686/sse2", 0xffffffffbf863cf0
+-2 (ENOENT)
+OPENFILE
+"/lib/i686/libc.so.6"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/lib/i686/libc.so.6", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+109
+"/lib/i686", 0xffffffffbf863cf0
+-2 (ENOENT)
+OPENFILE
+"/lib/sse2/libc.so.6"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/lib/sse2/libc.so.6", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+109
+"/lib/sse2", 0xffffffffbf863cf0
+-2 (ENOENT)
+OPENFILE
+"/lib/libc.so.6"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/lib/libc.so.6", O_RDONLY|O_LARGEFILE|O_CLOEXEC
+3
+SYSCALL
+analyzed_bin
+read
+109
+3, 0xbf863dc0, 512
+512
+SYSCALL
+analyzed_bin
+fstat
+109
+3, 0xffffffffbf863cf0
+0
+SYSCALL
+analyzed_bin
+mmap2
+109
+0x0, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0
+0xffffffffb7f62000
+SYSCALL
+analyzed_bin
+mmap2
+109
+0x0, 1918880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0
+0xffffffffb7d8d000
+SYSCALL
+analyzed_bin
+mprotect
+109
+0xffffffffb7f5b000, 4096, PROT_NONE
+0
+SYSCALL
+analyzed_bin
+mmap2
+109
+0xffffffffb7f5c000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 1892352
+0xffffffffb7f5c000
+SYSCALL
+analyzed_bin
+mmap2
+109
+0xffffffffb7f5f000, 10144, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0
+0xffffffffb7f5f000
+SYSCALL
+analyzed_bin
+close
+109
+3
+0
+SYSCALL
+analyzed_bin
+set_thread_area
+109
+{entry_number=4294967295, base_addr=3086364608, limit=1048575, seg_32bit=1, contents=0, read_exec_only=0, limit_in_pages=1, seg_not_present=0, useable=1}
+0
+SYSCALL
+analyzed_bin
+mprotect
+109
+0xffffffffb7f5c000, 8192, PROT_READ
+0
+SYSCALL
+analyzed_bin
+mprotect
+109
+0x440000, 4096, PROT_READ
+0
+SYSCALL
+analyzed_bin
+mprotect
+109
+0xffffffffb7f90000, 4096, PROT_READ
+0
+SYSCALL
+analyzed_bin
+brk
+109
+0x0
+4464640
+SYSCALL
+analyzed_bin
+brk
+109
+0x463000
+4599808
+SYSCALL
+analyzed_bin
+brk
+109
+0x464000
+4603904
+OPENFILE
+"/etc/passwd"
+SYSCALL
+analyzed_bin
+openat
+109
+AT_FDCWD, "/etc/passwd", O_RDONLY
+3
+SYSCALL
+analyzed_bin
+fstat
+109
+3, 0xffffffffbf863680
+0
+SYSCALL
+analyzed_bin
+read
+109
+3, 0x4422c0, 1024
+389
+SYSCALL
+analyzed_bin
+fstat
+109
+1, 0xffffffffbf863670
+0
+PROCESS
+111:109
+SYSCALL
+analyzed_bin
+clone
+109
+CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, 0x0, 0x0, 0xb7f63028
+111
+SYSCALL
+analyzed_bin
+kill
+109
+111, SIGKILL
+0
+SYSCALL
+analyzed_bin
+write
+109
+1, "Using write syscall.", 20
+20
+SYSCALL
+analyzed_bin
+socket
+109
+PF_INET, SOCK_STREAM, IPPROTO_TCP
+4
+SYSCALL
+analyzed_bin
+connect
+109
+4, {AF_INET, 147.229.177.160, 80}, 16
+0
+SYSCALL
+analyzed_bin
+sendto
+109
+4, "GET /index.html HTTP/1.1\r\nHost: www.su.fit."..., 55, 0x0, NULL, 0
+55
+SYSCALL
+analyzed_bin
+recvfrom
+109
+4, 0xffffffffbf8637ec, 4096, 0x0, 0x0, 0x0
+3998
+SYSCALL
+analyzed_bin
+write
+109
+1, "HTTP/1.1 200 OK\r\nServer: nginx/1.14.0 (Ubun"..., 4096
+4096
+SYSCALL
+analyzed_bin
+write
+109
+1, "rAdult process - killing child process of id "..., 50
+50
+SYSCALL
+analyzed_bin
+llseek
+109
+3, 0xffffffffffffffff, 0xfffffffffffffe7c, 0xffffffffbf8646b8, SEEK_CUR
+0
+SYSCALL
+analyzed_bin
+exit_group
+109
+0
+

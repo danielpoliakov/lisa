@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# versioning
+.git
+.gitignore
+
+# editor
+.vscode
+
+# virtual environment
+venv
+env
+
+# container data
+*.json
+*.pcap
+data/storage/*
+data/db/*
+
+# docker
+docker-compose.yml
+.dockerignore
+
+# not needed
+tests
+setup_env.sh
+README.md
+
+# big binaries
+images
+vpn
