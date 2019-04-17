@@ -53,7 +53,7 @@ $ cd lisa
 # docker-compose build
 ```
 
-3. Profit.
+3. Run the sandbox (default location: http://localhost:4242).
 
 ```
 # docker-compose up
