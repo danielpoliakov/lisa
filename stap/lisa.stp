@@ -52,7 +52,7 @@ probe syscall.{clone,fork}.return
   report_process(retval, pid());
 }
 
-probe syscall.openat {
+probe syscall.{open,openat} {
   if (!target_process()) next
 
   report_openfile(filename);
