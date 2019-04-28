@@ -12,7 +12,7 @@ from lisa.core.base import AnalyzedFile
 @pytest.fixture(scope='module')
 def static():
     location = os.path.dirname(__file__)
-    sample_path = f'{location}/../samples/dummy_clean'
+    sample_path = f'{location}/../binaries/dummy_clean'
     sample = AnalyzedFile(sample_path, '/tmp')
     analyzer = StaticAnalyzer(sample)
     analyzer.run_analysis()
