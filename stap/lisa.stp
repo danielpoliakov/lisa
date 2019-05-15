@@ -1,3 +1,8 @@
+/**
+ *  Based on official SystemTap's example: 
+ *  https://sourceware.org/systemtap/examples/process/strace.stp
+ */
+
 global thread_argstr%
 global processes%
 global syscalls_nonreturn[2]
