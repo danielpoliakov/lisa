@@ -154,6 +154,13 @@ analyzers_config = [
 
 ```
 
+## Running tests
+
+```
+# docker build -f ./docker/tests/Dockerfile -t lisa-tests .
+# docker run lisa-tests
+```
+
 ## Upcoming features
 
 1. **YARA module** - YARA module to match patterns in LiSa's JSON output.
