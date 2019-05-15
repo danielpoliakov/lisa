@@ -33,14 +33,17 @@ def internal_server_error(e):
     return jsonify(res), 500
 
 
-@app.route('/api/tasks', methods=['GET'])
-def list_all_tasks():
-    """Lists tasks."""
-    limit = 100
+def list_tasks(request_args, status=None):
+    """General listing tasks function.
 
-    if 'limit' in request.args:
+    :param request_args: Arguments passed to request.
+    :param status: Status filter (e.g. 'SUCCESS').
+    """
+    limit = 1000
+
+    if 'limit' in request_args:
         try:
-            limit = int(request.args['limit'])
+            limit = int(request_args['limit'])
         except ValueError:
             res = ErrorAPIResponse(3000).to_dict()
             return jsonify(res), 400
@@ -55,8 +58,14 @@ def list_all_tasks():
 
     try:
         session = Session()
-        tasks = session.query(Task).order_by(
-            Task.date_done.desc()).limit(limit)
+
+        if status:
+            tasks = session.query(Task).filter(Task.status == status).order_by(
+                Task.date_done.desc()).limit(limit)
+        else:
+            tasks = session.query(Task).order_by(
+                Task.date_done.desc()).limit(limit)
+
     except (exc.SQLAlchemyError, exc.OperationalError):
         session.rollback()
     finally:
@@ -67,42 +76,24 @@ def list_all_tasks():
         res.append(task.to_dict())
 
     return jsonify(res)
+
+
+@app.route('/api/tasks', methods=['GET'])
+def list_all_tasks():
+    """Lists all tasks."""
+    return list_tasks(request.args)
 
 
 @app.route('/api/tasks/finished', methods=['GET'])
 def list_finished_tasks():
     """List tasks with status 'SUCCESS'"""
-    limit = 100
+    return list_tasks(request.args, 'SUCCESS')
 
-    if 'limit' in request.args:
-        try:
-            limit = int(request.args['limit'])
-        except ValueError:
-            res = ErrorAPIResponse(3000).to_dict()
-            return jsonify(res), 400
 
-        if limit < 1:
-            res = ErrorAPIResponse(3000).to_dict()
-            return jsonify(res), 400
-
-    # unitialized db - no tasks
-    if not engine.dialect.has_table(engine, 'celery_taskmeta'):
-        return jsonify([])
-
-    try:
-        session = Session()
-        tasks = session.query(Task).filter(Task.status == 'SUCCESS').order_by(
-            Task.date_done.desc()).limit(limit)
-    except (exc.SQLAlchemyError, exc.OperationalError):
-        session.rollback()
-    finally:
-        session.close()
-
-    res = []
-    for task in tasks:
-        res.append(task.to_dict())
-
-    return jsonify(res)
+@app.route('/api/tasks/failed', methods=['GET'])
+def list_failed():
+    """Lists tasks with status 'FAILURE'"""
+    return list_tasks(request.args, 'FAILURE')
 
 
 @app.route('/api/tasks/pending', methods=['GET'])
@@ -125,42 +116,6 @@ def list_pending_tasks():
     pending = i.reserved()
 
     return jsonify(pending)
-
-
-@app.route('/api/tasks/failed', methods=['GET'])
-def list_failed():
-    """Lists tasks with status 'FAILURE'"""
-    limit = 100
-
-    if 'limit' in request.args:
-        try:
-            limit = int(request.args['limit'])
-        except ValueError:
-            res = ErrorAPIResponse(3000).to_dict()
-            return jsonify(res), 400
-
-        if limit < 1:
-            res = ErrorAPIResponse(3000).to_dict()
-            return jsonify(res), 400
-
-    # unitialized db - no tasks
-    if not engine.dialect.has_table(engine, 'celery_taskmeta'):
-        return jsonify([])
-
-    try:
-        session = Session()
-        tasks = session.query(Task).filter(Task.status == 'FAILURE').order_by(
-            Task.date_done.desc()).limit(limit)
-    except (exc.SQLAlchemyError, exc.OperationalError):
-        session.rollback()
-    finally:
-        session.close()
-
-    res = []
-    for task in tasks:
-        res.append(task.to_dict())
-
-    return jsonify(res)
 
 
 @app.route('/api/tasks/view/<id>', methods=['GET'])
