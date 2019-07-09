@@ -170,6 +170,11 @@ analyzers_config = [
 
 Contributions | feedback | issues | pull requests are welcome.
 
+## Related publications
+
+- [LiSa - Multiplatform Linux Sandbox for Analyzing IoT Malware](http://excel.fit.vutbr.cz/submissions/2019/058/58.pdf) - Excel@FIT conference paper covering this project.
+- [Understanding Linux Malware](http://www.s3.eurecom.fr/~yanick/publications/2018_oakland_linuxmalware.pdf) - Currently the most comprehensive study of Linux malware by authors of [Padawan sandbox](https://padawan.s3.eurecom.fr).
+
 ## License
 
 LiSa is licensed under [Apache License 2.0](LICENSE).
