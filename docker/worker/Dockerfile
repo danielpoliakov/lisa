@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     patch \
     git \
     qemu \
+    qemu-system \
     openvpn \
     binutils \
     iprange \
