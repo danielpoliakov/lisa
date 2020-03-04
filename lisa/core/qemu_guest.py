@@ -8,7 +8,7 @@ import shutil
 import pexpect
 import logging
 
-from lisa.config import logging_config, lisa_path, images
+from lisa.config import logging_config, images
 
 logging.config.dictConfig(logging_config)
 log = logging.getLogger()
@@ -46,7 +46,7 @@ class QEMUGuest():
         # copy elf binary to image
         log.info(f'Copying {file.name} to rootfs.')
         os.system(
-            f'{lisa_path}/bin/e2cp -G 0 -O 0 -P 755 '
+            'e2cp -G 0 -O 0 -P 755 '
             f'{file.path} {self._fs}:/root/analyzed_bin'
         )
 
@@ -148,21 +148,21 @@ class QEMUGuest():
                         during analysis.
         """
         extract_behav = (
-            f'{lisa_path}/bin/e2cp '
+            'e2cp '
             f'{self._fs}:/stap/behav.out '
             f'{self._file.data_dir}/'
         )
         os.system(extract_behav)
 
         extract_progout = (
-            f'{lisa_path}/bin/e2cp '
+            'e2cp '
             f'{self._fs}:/stap/prog.log '
             f'{self._file.data_dir}/'
         )
         os.system(extract_progout)
 
         extract_pcap = (
-            f'{lisa_path}/bin/e2cp '
+            'e2cp '
             f'{self._fs}:/stap/capture.pcap '
             f'{self._file.data_dir}/'
         )
