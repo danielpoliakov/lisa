@@ -100,11 +100,15 @@ class NetworkAnalyzer(AbstractSubAnalyzer):
         }
 
         # set up maxmind geoip2 databases
+        self._maxmind = False
+
         city = f'{lisa_path}/data/geolite2databases/GeoLite2-City.mmdb'
         asn = f'{lisa_path}/data/geolite2databases/GeoLite2-ASN.mmdb'
 
-        self._reader_city = geoip2.database.Reader(city)
-        self._reader_asn = geoip2.database.Reader(asn)
+        if os.path.isfile(city) and os.path.isfile(asn):
+            self._reader_city = geoip2.database.Reader(city)
+            self._reader_asn = geoip2.database.Reader(asn)
+            self._maxmind = True
 
         if pcap_path:
             self._pcap_path = os.path.abspath(pcap_path)
@@ -147,22 +151,31 @@ class NetworkAnalyzer(AbstractSubAnalyzer):
         :param port: Port number.
         :returns: Dictionary with endpoint information.
         """
-        # get maxmind geolite2 info
-        try:
-            rc = self._reader_city.city(ip)
-            ra = self._reader_asn.asn(ip)
-            endpoint = {
-                'ip': ip,
-                'ports': [],
-                'country': rc.country.name,
-                'city': rc.city.name,
-                'asn': ra.autonomous_system_number,
-                'organization': ra.autonomous_system_organization,
-                'blacklisted': is_ip_blacklisted(ip),
-                'data_in': 0,
-                'data_out': 0
-            }
-        except geoip2.errors.AddressNotFoundError as e:
+        if self._maxmind:
+            # get maxmind geolite2 info
+            try:
+                rc = self._reader_city.city(ip)
+                ra = self._reader_asn.asn(ip)
+                endpoint = {
+                    'ip': ip,
+                    'ports': [],
+                    'country': rc.country.name,
+                    'city': rc.city.name,
+                    'asn': ra.autonomous_system_number,
+                    'organization': ra.autonomous_system_organization,
+                    'blacklisted': is_ip_blacklisted(ip),
+                    'data_in': 0,
+                    'data_out': 0
+                }
+            except geoip2.errors.AddressNotFoundError as e:
+                endpoint = {
+                    'ip': ip,
+                    'ports': [],
+                    'blacklisted': is_ip_blacklisted(ip),
+                    'data_in': 0,
+                    'data_out': 0
+                }
+        else:
             endpoint = {
                 'ip': ip,
                 'ports': [],

@@ -61,6 +61,29 @@ $ cd lisa
 
 ## Configuration
 
+### MaxMind GeoLite2
+
+[Sign up](https://www.maxmind.com/en/geolite2/signup) to get your API key. Use API key in docker-compose.yml build args section.
+
+```
+.
+.
+  worker:
+    image: lisa-worker
+    build:
+      context: .
+      dockerfile: ./docker/worker/Dockerfile
+      args:
+        maxmind_key: YOUR_KEY
+    volumes:
+      - "./data/storage:/home/lisa/data/storage"
+      .
+      .
+      .
+.
+.
+```
+
 ### Web hosting
 
 Setup your server's IP:port in nginx service in docker-compose.yml.

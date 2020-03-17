@@ -1,5 +1,7 @@
 FROM python:3.6-slim
 
+ARG maxmind_key
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     g++ \
@@ -33,11 +35,7 @@ WORKDIR /home/lisa
 
 RUN pip install -r requirements.txt \
     && iprange -j data/blacklists/* > data/ipblacklist \
-    && echo "Downloading MaxMind GeoLite databases ..." \
-    && wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz -q -O - | tar xz -C data/geolite2databases \
-    && wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN.tar.gz -q -O - | tar xz -C data/geolite2databases \
-    && mv $(find ./data -name GeoLite2-City.mmdb) ./data/geolite2databases \
-    && mv $(find ./data -name GeoLite2-ASN.mmdb) ./data/geolite2databases \
+    && ./docker/worker/maxmind.sh $maxmind_key \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     git \
     gcc \
