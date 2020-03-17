@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     iprange \
     wget \
     tar \
+    e2tools \
     && git clone https://github.com/radare/radare2 \
     && radare2/sys/install.sh \
     && useradd -m lisa \
@@ -21,7 +22,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget https://github.com/danieluhricek/linux-images/archive/v1.0.1.tar.gz -q -O - | tar xz -C /home/lisa \
     && mv /home/lisa/linux-images-1.0.1 /home/lisa/images
 
-COPY --chown=lisa:lisa ./bin /home/lisa/bin
 COPY --chown=lisa:lisa ./data /home/lisa/data
 COPY --chown=lisa:lisa ./docker /home/lisa/docker
 COPY --chown=lisa:lisa ./lisa /home/lisa/lisa
