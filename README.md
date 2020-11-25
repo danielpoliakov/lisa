@@ -16,6 +16,7 @@ Project providing automated Linux malware analysis on various CPU architectures.
 - [Adding new sub-analysis modules](#adding-new-sub-analysis-modules)
 - [Upcoming features](#upcoming-features)
 - [Contribute](#contribute)
+- [Related work](#related-work)
 - [License](#license)
 
 ![LiSa](web_frontend/lisa.gif)
@@ -193,10 +194,11 @@ analyzers_config = [
 
 Contributions | feedback | issues | pull requests are welcome.
 
-## Related publications
+## Related work
 
-- [LiSa - Multiplatform Linux Sandbox for Analyzing IoT Malware](http://excel.fit.vutbr.cz/submissions/2019/058/58.pdf) - Excel@FIT conference paper covering this project.
-- [Understanding Linux Malware](http://www.s3.eurecom.fr/~yanick/publications/2018_oakland_linuxmalware.pdf) - Currently the most comprehensive study of Linux malware by authors of [Padawan sandbox](https://padawan.s3.eurecom.fr).
+- [LiSa - Multiplatform Linux Sandbox for Analyzing IoT Malware](http://excel.fit.vutbr.cz/submissions/2019/058/58.pdf)
+- [Understanding Linux Malware](http://www.s3.eurecom.fr/~yanick/publications/2018_oakland_linuxmalware.pdf)
+- [LiSa. Linux Sand Box with Chad Seaman and Johnathan Respeto](https://www.youtube.com/watch?v=qed7ZnnkxZM)
 
 ## License
 
