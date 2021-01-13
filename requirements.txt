@@ -1,6 +1,6 @@
 click==7.0
 disspcap==1.1.1
-r2pipe==1.2.0
+r2pipe==1.5.3
 pexpect==4.2.1
 geoip2==2.9.0
 flask==1.0.2
