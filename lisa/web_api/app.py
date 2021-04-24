@@ -5,7 +5,7 @@
 from flask import Flask
 from flask_cors import CORS
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from celery import Celery
 from lisa.config import celery_broker, celery_backend, sql_backend
 
@@ -16,6 +16,6 @@ celery_app.conf.worker_hijack_root_logger = False
 CORS(app)
 
 engine = create_engine(sql_backend)
-Session = sessionmaker(bind=engine)
+Session = scoped_session(sessionmaker(bind=engine))
 
 from lisa.web_api import routes

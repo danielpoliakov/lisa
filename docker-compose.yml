@@ -67,6 +67,7 @@ services:
       - MYSQL_USER=lisa
       - MYSQL_PASSWORD=lisa
       - MYSQL_DATABASE=lisadb
+      - MYSQL_INITDB_SKIP_TZINFO=1
     volumes:
       - "./data/db:/var/lib/mysql"
     networks:
