@@ -1,0 +1,265 @@
+LISA
+PROCESS
+108:105
+SYSCALL
+analyzed_bin
+execve
+108
+
+0
+SYSCALL
+analyzed_bin
+brk
+108
+0x0
+22982656
+SYSCALL
+analyzed_bin
+access
+108
+"/etc/ld.so.preload", R_OK
+-2 (ENOENT)
+OPENFILE
+"/etc/ld.so.cache"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+OPENFILE
+"/lib64/tls/x86_64/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/lib64/tls/x86_64/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/lib64/tls/x86_64/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/lib64/tls/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/lib64/tls/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/lib64/tls/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/lib64/tls/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/lib64/tls/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/lib64/tls/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/lib64/tls/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/lib64/tls/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/lib64/tls", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/lib64/x86_64/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/lib64/x86_64/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/lib64/x86_64/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/lib64/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/lib64/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/lib64/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/lib64/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/lib64/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/lib64/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/lib64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/lib64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/lib64", 0x7ffc752441b0
+0
+OPENFILE
+"/usr/lib64/tls/x86_64/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/usr/lib64/tls/x86_64/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/usr/lib64/tls/x86_64/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/usr/lib64/tls/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/usr/lib64/tls/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/usr/lib64/tls/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/usr/lib64/tls/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/usr/lib64/tls/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/usr/lib64/tls/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/usr/lib64/tls/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/usr/lib64/tls/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/usr/lib64/tls", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/usr/lib64/x86_64/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/usr/lib64/x86_64/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/usr/lib64/x86_64/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/usr/lib64/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/usr/lib64/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/usr/lib64/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/usr/lib64/x86_64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/usr/lib64/x86_64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/usr/lib64/x86_64", 0x7ffc752441b0
+-2 (ENOENT)
+OPENFILE
+"/usr/lib64/libGL.so.1"
+SYSCALL
+analyzed_bin
+openat
+108
+AT_FDCWD, "/usr/lib64/libGL.so.1", O_RDONLY|O_CLOEXEC
+-2 (ENOENT)
+SYSCALL
+analyzed_bin
+stat
+108
+"/usr/lib64", 0x7ffc752441b0
+0
+SYSCALL
+analyzed_bin
+writev
+108
+2, 0x7ffc75243e60, 10
+128
+SYSCALL
+analyzed_bin
+exit_group
+108
+127
+

@@ -1,6 +1,15 @@
 version: "3"
 
 services:
+  yarasea:
+    image: yarasea
+    build:
+      context: .
+      dockerfile: ./docker/yarasea/Dockerfile
+    networks:
+      lisanet:
+        ipv4_address: 172.42.0.15
+    restart: on-failure
   api:
     image: lisa-api
     build:

@@ -22,7 +22,7 @@ dynamic_config = {
     'max_exectime': 1000
 }
 
-yarasea_url = 'http://192.168.4.107:8080'
+yarasea_url = 'http://172.42.0.15:8080'
 
 images = {
     'x86_64': {
