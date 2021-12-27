@@ -1,15 +1,6 @@
 version: "3"
 
 services:
-  capasea:
-    image: capasea
-    build:
-      context: .
-      dockerfile: ./docker/capasea/Dockerfile
-    networks:
-      lisanet:
-        ipv4_address: 172.42.0.16
-    restart: on-failure
   yarasea:
     image: yarasea
     build:

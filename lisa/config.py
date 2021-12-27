@@ -24,7 +24,7 @@ dynamic_config = {
 }
 
 yarasea_url = 'http://172.42.0.15:8080'
-capasea_url = 'http://172.42.0.16:8080'
+
 images = {
     'x86_64': {
         'run': f'{lisa_path}/images/x86_64/run.sh',
