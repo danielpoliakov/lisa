@@ -12,3 +12,4 @@ pymysql==0.9.3
 uwsgi==2.0.18
 pytest==4.3.0
 pytest-cov==2.6.1
+yara>=4.0.4
