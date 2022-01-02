@@ -14,7 +14,7 @@ logging.config.dictConfig(logging_config)
 log = logging.getLogger()
 
 
-class QEMUGuest():
+class QEMUGuest:
     """QEMU guest handling.
 
     :param file: Targeted binary to emulate.
