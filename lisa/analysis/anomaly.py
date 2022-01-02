@@ -3,7 +3,7 @@
 """
 
 
-class Anomaly():
+class Anomaly:
     """Anomaly base structure.
 
     :param name: Name of anomaly.

@@ -41,7 +41,7 @@ def is_ip_blacklisted(ipaddr):
         mid = low + (high - low) // 2
         ipmid = ipblacklist[mid]
 
-        if ip >= ipmid[0] and ip <= ipmid[1]:
+        if ipmid[0] <= ip <= ipmid[1]:
             return True
         elif ip < ipmid[0]:
             high = mid - 1
@@ -60,11 +60,11 @@ def is_ip_local(ipaddr):
     ip = int(ipaddress.ip_address(ipaddr))
 
     # 10.x.x.x
-    if ip >= 167772160 and ip < 184549376:
+    if 167772160 <= ip < 184549376:
         return True
 
     # 172.16.0.0 – 172.31.255.255
-    if ip >= 2886729728 and ip < 2887778304:
+    if 2886729728 <= ip < 2887778304:
         return True
 
     # 192.168.x.x
