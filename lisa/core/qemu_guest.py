@@ -75,8 +75,18 @@ class QEMUGuest():
         if not self._is_running:
             return None
 
-        self._proc.sendline(command)
-        self._proc.expect(self._prompt)
+        # some architectures do not support commands with more than 16 digits
+        # the command will be splitted in smaller chunks in order to be processed properly by QEMU
+        n=12
+        chunks = [command[i:i+n] for i in range(0, len(command), n)]
+        for chunk in chunks:
+            self._proc.sendline(chunk+'\\')
+
+        self._proc.sendline(' ')
+        try:
+            self._proc.expect(self._prompt)
+        except:
+            print("[WARNING] Expecting "+self._prompt)
         return self._proc.before
 
     def start_vm(self, disable_ipv6=True):
@@ -119,7 +129,7 @@ class QEMUGuest():
         """
         log.debug('Starting analysis module and target binary.')
 
-        self.send_command('tcpdump -i eth0 -w /stap/capture.pcap &')
+        self.send_command('tcpdump -U -i eth0 -w /stap/capture.pcap &')
 
         time.sleep(1)
 
