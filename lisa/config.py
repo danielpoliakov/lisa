@@ -76,6 +76,6 @@ logging_config = {
     }
 }
 
-celery_broker = 'pyamqp://lisa:lisa@172.42.0.13//'
-celery_backend = 'db+mysql+pymysql://lisa:lisa@172.42.0.14/lisadb'
-sql_backend = 'mysql+pymysql://lisa:lisa@172.42.0.14/lisadb'
+celery_broker = 'pyamqp://lisa:lisa@172.42.0.23//'
+celery_backend = 'db+mysql+pymysql://lisa:lisa@172.42.0.24/lisadb'
+sql_backend = 'mysql+pymysql://lisa:lisa@172.42.0.24/lisadb'

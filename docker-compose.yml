@@ -13,7 +13,7 @@ services:
       - worker
     networks:
       lisanet:
-        ipv4_address: 172.42.0.10
+        ipv4_address: 172.42.0.20
     restart: on-failure
 
   worker:
@@ -47,7 +47,7 @@ services:
       - api
     networks:
       lisanet:
-        ipv4_address: 172.42.0.12
+        ipv4_address: 172.42.0.22
 
   rabbitmq:
     image: rabbitmq:latest
@@ -58,7 +58,7 @@ services:
       - 5672:5672
     networks:
       lisanet:
-        ipv4_address: 172.42.0.13
+        ipv4_address: 172.42.0.23
 
   mariadb:
     image: mariadb:latest
@@ -72,7 +72,7 @@ services:
       - "./data/db:/var/lib/mysql"
     networks:
       lisanet:
-        ipv4_address: 172.42.0.14
+        ipv4_address: 172.42.0.24
     restart: always
 
 networks:
