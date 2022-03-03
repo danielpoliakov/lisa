@@ -1,9 +1,9 @@
-click==8.0.3
+click
 disspcap==1.1.1
 r2pipe==1.5.3
 pexpect==4.2.1
 geoip2==2.9.0
-flask==1.1.4
+flask
 flask-cors===3.0.9
 celery==5.2.3
 rabbitmq==0.2.0
