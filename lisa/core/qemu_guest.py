@@ -14,7 +14,7 @@ logging.config.dictConfig(logging_config)
 log = logging.getLogger()
 
 
-class QEMUGuest():
+class QEMUGuest:
     """QEMU guest handling.
 
     :param file: Targeted binary to emulate.
@@ -69,7 +69,7 @@ class QEMUGuest():
     def send_command(self, command):
         """Sends command to guest VM and returns it's output.
 
-        :param command: String containing desired commmand.
+        :param command: String containing desired command.
         :returns: Command's output inside VM.
         """
         if not self._is_running:

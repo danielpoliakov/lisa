@@ -51,7 +51,7 @@ class AbstractSubAnalyzer(ABC):
         return self._output
 
 
-class AnalyzedFile():
+class AnalyzedFile:
     """Class for holding analyzed samples information.
 
     :param file_path: Path to analyzed file.
@@ -131,7 +131,7 @@ class AnalyzedFile():
         return self._exec_time
 
 
-class AnalyzedPcap():
+class AnalyzedPcap:
     """Class for holding analyzed pcap information.
 
     :param pcap_path: Path to pcap.

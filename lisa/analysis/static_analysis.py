@@ -27,7 +27,7 @@ class StaticAnalyzer(AbstractSubAnalyzer):
         log.info('Static Analysis started.')
 
         # start radare2
-        self._r2 = r2pipe.open(self._file.path, ['-2'])
+        self._r2 = r2pipe.open(self._file.path)
         self._r2.cmd('aaa')
 
         # binary info
@@ -59,8 +59,8 @@ class StaticAnalyzer(AbstractSubAnalyzer):
             'language': info['bin']['lang'],
             'stripped': info['bin']['stripped'],
             'relocations': info['bin']['relocs'],
-            'min_opsize': info['bin']['minopsz'],
-            'max_opsize': info['bin']['maxopsz'],
+            'min_opsize': info['core']['minopsz'],
+            'max_opsize': info['core']['maxopsz'],
             'entry_point': entry_point[0]['vaddr']
         }
 

@@ -9,6 +9,7 @@ analyzers_config = [
     'lisa.analysis.static_analysis.StaticAnalyzer',
     'lisa.analysis.dynamic_analysis.DynamicAnalyzer',
     'lisa.analysis.network_analysis.NetworkAnalyzer',
+    'lisa.analysis.yarasea.YaraSeaAnalyzer',
 
     # 'lisa.analysis.virustotal.VirusTotalAnalyzer'
 
@@ -21,6 +22,8 @@ dynamic_config = {
     'min_exectime': 10,
     'max_exectime': 1000
 }
+
+yarasea_url = 'http://172.42.0.15:8080'
 
 images = {
     'x86_64': {
