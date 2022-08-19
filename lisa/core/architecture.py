@@ -45,7 +45,7 @@ def get_architecture(file_path):
         # check ELF header 7xELF
         if header[:4] != b'\x7fELF':
             log.critical('Analyzed file has invalid ELF header.')
-            return (None, None, None)
+            return None, None, None
 
         # 32 vs 64 bit
         if header[4] == 1:
@@ -65,4 +65,4 @@ def get_architecture(file_path):
         if byte_arch_code in e_machine:
             arch = e_machine[byte_arch_code]
 
-    return (arch, bit, endian)
+    return arch, bit, endian

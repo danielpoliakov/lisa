@@ -29,7 +29,7 @@ def create_analyzer(analyzer_path, file_path):
     return analyzer_class(file_path)
 
 
-class Master():
+class Master:
     """Top level analyzer of binary files.
 
     :param file_path: Path to binary file.

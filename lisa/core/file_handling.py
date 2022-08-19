@@ -33,7 +33,7 @@ def save_output(output, output_file, indented=False):
     :param output: Analysis output to be saved.
     :param output_file: Output file path.
     :param indented: Indentation of json file.
-    :returns: Boolean whether file was saved succesfully.
+    :returns: Boolean whether file was saved successfully.
     """
     with opened_w_error(output_file, 'w') as (f, err):
         if err:
@@ -44,4 +44,4 @@ def save_output(output, output_file, indented=False):
                 json.dump(output, f, indent=4)
             else:
                 json.dump(output, f)
-            log.info(f'File saved succesfully to {output_file}.')
+            log.info(f'File saved successfully to {output_file}.')
