@@ -3,8 +3,11 @@
 """
 
 import r2pipe
+import yara
 import subprocess
 import logging.config
+import os
+import uuid
 
 from lisa.core.base import AbstractSubAnalyzer
 from lisa.config import logging_config
@@ -12,12 +15,43 @@ from lisa.config import logging_config
 logging.config.dictConfig(logging_config)
 log = logging.getLogger()
 
+log.info('yara module loaded  ' + str(yara.YARA_VERSION))
+allruls = {}
+ruledir = '/home/lisa/data/yararules'
+allrulefiles = list(filter(lambda x: 'import "pe"' not in open(os.path.join(ruledir, x)).read(), os.listdir(ruledir)))
+allrulefiles = list(filter(lambda x: 'filepath' not in open(os.path.join(ruledir, x)).read(), allrulefiles))
+list(map(lambda x: allruls.update({str(uuid.uuid4()): os.path.join(ruledir, x)}), allrulefiles))
+rules = yara.compile(filepaths=allruls)
+log.info('yara load {} rules '.format(len(allrulefiles)))
+
 
 class StaticAnalyzer(AbstractSubAnalyzer):
+
     """Provides static analysis.
 
     :param file: Analyzed file's object.
     """
+
+    def run_yara_analysis(self):
+        matches = rules.match(data="test test test test")
+        log.info('yara match {} rules '.format(len(matches)))
+        allres = []
+        try:
+            for match in matches:
+                tmp = {
+                    'tags': match.tags,
+                    'matches': True,
+                    'namespace': match.namespace,
+                    'rule': match.rule,
+                    'meta': match.meta,
+                    # 'strings': list(map(lambda x: {"offset": hex(x[0]), "strings": x[1], "content": x[2]}, match.strings))
+                    # content 部分存在不能被json 序列化的数据
+                    'strings': list(map(lambda x: {"offset": hex(x[0]), "strings": x[1]}, match.strings))
+                }
+                allres.append(tmp)
+        except BaseException as err:
+            allres.append({"yara": "err:" + str(err)})
+        self._output['yara'] = allres
 
     def run_analysis(self):
         """Main analysis method.
@@ -32,7 +66,7 @@ class StaticAnalyzer(AbstractSubAnalyzer):
 
         # binary info
         self._r2_info()
-
+        self.run_yara_analysis()
         # strings
         self._load_strings()
 
@@ -59,8 +93,8 @@ class StaticAnalyzer(AbstractSubAnalyzer):
             'language': info['bin']['lang'],
             'stripped': info['bin']['stripped'],
             'relocations': info['bin']['relocs'],
-            'min_opsize': info['bin']['minopsz'],
-            'max_opsize': info['bin']['maxopsz'],
+            'min_opsize': info['core']['minopsz'],
+            'max_opsize': info['core']['maxopsz'],
             'entry_point': entry_point[0]['vaddr']
         }
 

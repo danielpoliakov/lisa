@@ -1,0 +1,8 @@
+rule base_line {
+    meta:
+        description = "base_line,just for test yara module is ready!"
+    strings:
+        $s1 = " "
+    condition:
+        $s1
+}

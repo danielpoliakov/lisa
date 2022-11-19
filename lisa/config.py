@@ -7,6 +7,7 @@ storage_path = f'{lisa_path}/data/storage'
 
 analyzers_config = [
     'lisa.analysis.static_analysis.StaticAnalyzer',
+    # 'lisa.analysis.static_analysis_yara.YaraAnalyzer',
     'lisa.analysis.dynamic_analysis.DynamicAnalyzer',
     'lisa.analysis.network_analysis.NetworkAnalyzer',
 
