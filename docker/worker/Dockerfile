@@ -33,7 +33,8 @@ ENV PYTHONPATH /home/lisa
 
 WORKDIR /home/lisa
 
-RUN pip install -r requirements.txt \
+RUN /usr/local/bin/python -m pip install --upgrade pip \
+    && pip install -r requirements.txt \
     && iprange -j data/blacklists/* > data/ipblacklist \
     && ./docker/worker/maxmind.sh $maxmind_key \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \

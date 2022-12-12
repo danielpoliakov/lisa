@@ -182,14 +182,6 @@ class ReportStatic extends Component {
         value: r.binary_info.relocations.toString()
       },
       {
-        key: "Min opsize",
-        value: r.binary_info.min_opsize
-      },
-      {
-        key: "Max opsize",
-        value: r.binary_info.max_opsize
-      },
-      {
         key: "Entrypoint",
         value: r.binary_info.entry_point
       }
