@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     qemu \
     qemu-system \
+    qemu-utils \
     openvpn \
     binutils \
     iprange \
@@ -44,5 +45,10 @@ RUN pip install -r requirements.txt \
     patch \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /radare2/.git
+
+# resize the sd card to fix ARM error:
+# qemu-system-arm: Invalid SD card size: 60 MiB
+# SD card size has to be a power of 2, e.g. 64 MiB.
+RUN qemu-img resize -f raw ./images/arm/images/rootfs.ext2 64M
 
 CMD ["./docker/worker/init.sh"]
