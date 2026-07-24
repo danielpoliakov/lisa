@@ -16,13 +16,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     iprange \
     wget \
     tar \
-    e2tools \
-    && git clone https://github.com/radare/radare2 \
+    e2tools
+
+RUN git clone --branch 5.9.8 https://github.com/radare/radare2 \
+    && find radare2/ -name "*.py" -exec sed -i 's/time\.time_ns()/int(time.time()*1e9)/g' {} + \
     && radare2/sys/install.sh \
     && useradd -m lisa \
     && echo "Downloading LiSa Linux images ..." \
-    && wget https://github.com/danieluhricek/linux-images/archive/v1.0.1.tar.gz -q -O - | tar xz -C /home/lisa \
-    && mv /home/lisa/linux-images-1.0.1 /home/lisa/images
+    && wget https://github.com/danieluhricek/linux-images/archive/v1.0.1.tar.gz \
+    && tar -xzf v1.0.1.tar.gz \
+    && mkdir -p /home/lisa/images \
+    && mv /linux-images-1.0.1/* /home/lisa/images/ \
+    && truncate -s 64M /home/lisa/images/arm/images/rootfs.ext2 \
+    && chown -R lisa:lisa /home/lisa/images
 
 COPY --chown=lisa:lisa ./data /home/lisa/data
 COPY --chown=lisa:lisa ./docker /home/lisa/docker
