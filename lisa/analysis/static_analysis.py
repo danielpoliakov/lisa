@@ -46,23 +46,32 @@ class StaticAnalyzer(AbstractSubAnalyzer):
         info = self._r2.cmdj('ij')
         entry_point = self._r2.cmdj('iej')
 
-        info_select = {
-            'arch': info['bin']['arch'],
-            'endianess': info['bin']['endian'],
-            'format': info['core']['format'],
-            'machine': info['bin']['machine'],
-            'type': info['core']['type'],
-            'size': info['core']['size'],
-            'os': info['bin']['os'],
-            'static': info['bin']['static'],
-            'interpret': info['bin']['intrp'],
-            'language': info['bin']['lang'],
-            'stripped': info['bin']['stripped'],
-            'relocations': info['bin']['relocs'],
-            'min_opsize': info['bin']['minopsz'],
-            'max_opsize': info['bin']['maxopsz'],
-            'entry_point': entry_point[0]['vaddr']
-        }
+        if 'bin' not in info or 'core' not in info or not entry_point:
+            log.warning('radare2 could not extract binary info for this file (not a recognized executable format, e.g. a script)')
+            info_select = {
+                'arch': None, 'endianess': None, 'format': None, 'machine': None,
+                'type': None, 'size': None, 'os': None, 'static': None,
+                'interpret': None, 'language': None, 'stripped': None,
+                'relocations': None, 'min_opsize': 0, 'max_opsize': 0, 'entry_point': None
+            }
+        else:
+            info_select = {
+                'arch': info['bin']['arch'],
+                'endianess': info['bin']['endian'],
+                'format': info['core']['format'],
+                'machine': info['bin']['machine'],
+                'type': info['core']['type'],
+                'size': info['core']['size'],
+                'os': info['bin']['os'],
+                'static': info['bin']['static'],
+                'interpret': info['bin']['intrp'],
+                'language': info['bin']['lang'],
+                'stripped': info['bin']['stripped'],
+                'relocations': info['bin']['relocs'],
+                'min_opsize': info['bin'].get('minopsz', 0),
+                'max_opsize': info['bin'].get('maxopsz', 0),
+                'entry_point': entry_point[0]['vaddr']
+            }
 
         imports = self._r2.cmdj('iij')
         exports = self._r2.cmdj('iEj')
