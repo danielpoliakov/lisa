@@ -115,9 +115,8 @@ class NetworkAnalyzer(AbstractSubAnalyzer):
         else:
             self._pcap_path = f'{self._file.data_dir}/capture.pcap'
 
-        self._local_ip = None
-
-        if file is not None:
+        self._local_ip = ip_address
+        if file is not None and ip_address is None:
             self._local_ip = '10.0.2.15'
 
     @property
@@ -381,6 +380,25 @@ class NetworkAnalyzer(AbstractSubAnalyzer):
         self._endpoints = list(endpoints.values())
 
         # report anomaly
+        if len(self._endpoints) == 1:
+            total_bytes = (self._endpoints[0]['data_in']
+                          + self._endpoints[0]['data_out'])
+            if self._syn_count <= 5 and total_bytes < 200:
+                name = 'single_endpoint_low_volume'
+                description = ('Sample communicated with exactly one '
+                               'endpoint using very few packets and little '
+                               'data - possible low-volume C2 beacon.')
+                data = {
+                    'endpoint': self._endpoints[0]['ip'],
+                    'syn_count': self._syn_count,
+                    'total_bytes': total_bytes
+                }
+
+                anomaly = Anomaly(name, description, data)
+                self._anomalies.append(anomaly.to_dict())
+
+
+        # report anomaly
         if self._syn_count > 100:
             name = 'syn_scan'
             description = 'Sample send more than 100 TCP SYN packets.'
@@ -407,6 +425,30 @@ class NetworkAnalyzer(AbstractSubAnalyzer):
                 }
             }
 
+            anomaly = Anomaly(name, description, data)
+            self._anomalies.append(anomaly.to_dict())
+
+        # report anomaly
+        dynamic_dns_suffixes = (
+            'duckdns.org', 'no-ip.com', 'no-ip.org', 'no-ip.biz',
+            'dyndns.org', 'dyn.com', 'hopto.org', 'ddns.net',
+            'freedynamicdns.net', 'zapto.org', 'sytes.net'
+        )
+        dynamic_dns_hits = []
+        for question in self._dns_questions:
+            qname = question.split()[0].lower()
+            for suffix in dynamic_dns_suffixes:
+                if qname == suffix or qname.endswith('.' + suffix):
+                    dynamic_dns_hits.append(qname)
+                    break
+        if dynamic_dns_hits:
+            name = 'dynamic_dns_query'
+            description = ('Sample resolved a domain hosted on a free '
+                           'dynamic DNS provider - commonly abused for '
+                           'C2 infrastructure.')
+            data = {
+                'domains': dynamic_dns_hits
+            }
             anomaly = Anomaly(name, description, data)
             self._anomalies.append(anomaly.to_dict())
 
