@@ -27,6 +27,7 @@ RUN git clone --branch 5.9.8 https://github.com/radare/radare2 \
     && tar -xzf v1.0.1.tar.gz \
     && mkdir -p /home/lisa/images \
     && mv /linux-images-1.0.1/* /home/lisa/images/ \
+    && truncate -s 64M /home/lisa/images/arm/images/rootfs.ext2 \
     && chown -R lisa:lisa /home/lisa/images
 
 COPY --chown=lisa:lisa ./data /home/lisa/data
