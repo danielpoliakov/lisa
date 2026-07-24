@@ -4,6 +4,7 @@
 
 import os
 import glob
+import json
 import logging.config
 
 from flask import jsonify, request, send_file
@@ -13,6 +14,7 @@ from sqlalchemy import exc
 from lisa.web_api import tasks
 from lisa.web_api.app import app, celery_app, Session, engine
 from lisa.web_api.responses import ErrorAPIResponse
+from lisa.web_api.pdf_report import generate_pdf
 from lisa.config import logging_config, storage_path, dynamic_config
 
 logging.config.dictConfig(logging_config)
@@ -234,11 +236,46 @@ def get_report(id):
     """Get task report endpoint."""
     task = celery_app.AsyncResult(id)
 
-    if task.state != 'SUCCESS':
+    try:
+        state = task.state
+    except KeyError:
+        state = 'FAILURE'
+
+    if state != 'SUCCESS':
         res = ErrorAPIResponse(1000).to_dict()
         return jsonify(res), 404
 
     return send_file(f'{storage_path}/{id}/report.json')
+
+
+@app.route('/api/report/pdf/<id>', methods=['GET'])
+def get_report_pdf(id):
+    """Get task report as a generated PDF."""
+    task = celery_app.AsyncResult(id)
+
+    try:
+        state = task.state
+    except KeyError:
+        state = 'FAILURE'
+
+    if state != 'SUCCESS':
+        res = ErrorAPIResponse(1000).to_dict()
+        return jsonify(res), 404
+
+    json_path = f'{storage_path}/{id}/report.json'
+    pdf_path = f'{storage_path}/{id}/report.pdf'
+
+    if not os.path.isfile(json_path):
+        res = ErrorAPIResponse(1004).to_dict()
+        return jsonify(res), 404
+
+    # generate PDF on first request, then cache it
+    if not os.path.isfile(pdf_path):
+        with open(json_path) as f:
+            report_data = json.load(f)
+        generate_pdf(report_data, pdf_path)
+
+    return send_file(pdf_path, mimetype='application/pdf')
 
 
 @app.route('/api/pcap/<id>', methods=['GET'])
