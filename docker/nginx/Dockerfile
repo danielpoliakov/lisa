@@ -1,4 +1,4 @@
-FROM node:10-alpine as builder
+FROM node:18-alpine as builder
 
 ARG webhost=localhost:4242
 
@@ -7,6 +7,8 @@ WORKDIR /frontend
 COPY web_frontend ./
 
 ENV REACT_APP_HOST=$webhost
+
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
 RUN yarn && yarn build
 

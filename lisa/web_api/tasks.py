@@ -49,7 +49,7 @@ def pcap_analysis(self, pcap_path, pretty=False):
     self.update_state(meta={'filename': os.path.basename(pcap_path)})
 
     pcap = AnalyzedPcap(pcap_path)
-    analyzer = NetworkAnalyzer(None, pcap.path, None)
+    analyzer = NetworkAnalyzer(None, pcap.path, '10.0.2.15')
     analyzer.analyze_pcap()
 
     output_file = f'{storage_path}/{self.request.id}/report.json'
