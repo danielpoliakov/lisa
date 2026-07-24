@@ -50,7 +50,7 @@ services:
         ipv4_address: 172.42.0.12
 
   rabbitmq:
-    image: rabbitmq:latest
+    image: rabbitmq:3.8-management
     environment:
       - RABBITMQ_DEFAULT_USER=lisa
       - RABBITMQ_DEFAULT_PASS=lisa
